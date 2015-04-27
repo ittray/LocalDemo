@@ -24,17 +24,15 @@ namespace ConnectUNCWithCredentials
         }
 
         [DllImport("NetApi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-        internal static extern NET_API_STATUS NetUseAdd(
-            LPWSTR UncServerName,
-            DWORD Level,
-            ref USE_INFO_2 Buf,
-            out DWORD ParmError);
+        internal static extern NET_API_STATUS NetUseAdd(LPWSTR UncServerName,
+                                                        DWORD Level,
+                                                        ref USE_INFO_2 Buf,
+                                                        out DWORD ParmError);
 
         [DllImport("NetApi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-        internal static extern NET_API_STATUS NetUseDel(
-            LPWSTR UncServerName,
-            LPWSTR UseName,
-            DWORD ForceCond);
+        internal static extern NET_API_STATUS NetUseDel(LPWSTR UncServerName,
+                                                        LPWSTR UseName,
+                                                        DWORD ForceCond);
 
         private bool disposed = false;
 
