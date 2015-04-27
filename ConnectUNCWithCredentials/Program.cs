@@ -9,7 +9,7 @@ namespace ConnectUNCWithCredentials
     /// </summary>
     static class Program
     {
-     
+
         [STAThread]
         static void Main()
         {

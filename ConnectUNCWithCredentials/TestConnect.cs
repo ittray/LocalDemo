@@ -9,7 +9,6 @@ using System.IO;
 
 namespace ConnectUNCWithCredentials
 {
-	//todo
     public partial class TestConnect : Form
     {
         public TestConnect()
@@ -22,30 +21,30 @@ namespace ConnectUNCWithCredentials
             this.Cursor = Cursors.WaitCursor;
             Application.DoEvents();
             string[] dirs;
-using (UNCAccessWithCredentials unc = new UNCAccessWithCredentials())
-{
-    if (unc.NetUseWithCredentials(tbUNCPath.Text,
-                                  tbUserName.Text,
-                                  tbDomain.Text,
-                                  tbPassword.Text))
-    {
-        dirs = Directory.GetDirectories(tbUNCPath.Text);
-        foreach (string d in dirs)
-        {
-            tbDirList.Text += d + "\r\n";
-        }
-    }
-    else
-    {
-        this.Cursor = Cursors.Default;
-        MessageBox.Show("Failed to connect to " + tbUNCPath.Text + "\r\nLastError = " + unc.LastError.ToString(),
-                        "Failed to connect",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-    }
+            using (UNCAccessWithCredentials unc = new UNCAccessWithCredentials())
+            {
+                if (unc.NetUseWithCredentials(tbUNCPath.Text,
+                                              tbUserName.Text,
+                                              tbDomain.Text,
+                                              tbPassword.Text))
+                {
+                    dirs = Directory.GetDirectories(tbUNCPath.Text);
+                    foreach (string d in dirs)
+                    {
+                        tbDirList.Text += d + "\r\n";
+                    }
+                }
+                else
+                {
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show("Failed to connect to " + tbUNCPath.Text + "\r\nLastError = " + unc.LastError.ToString(),
+                                    "Failed to connect",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
 
-}
+            }
             this.Cursor = Cursors.Default;
-        }    
+        }
     }
 }
