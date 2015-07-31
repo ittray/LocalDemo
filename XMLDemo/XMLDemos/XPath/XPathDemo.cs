@@ -56,9 +56,25 @@ namespace XMLDemos.XPath
             XmlNodeList childrenNodes = xdoc.SelectNodes("descendant::price");
         }
 
-        public static void ParsePetsXmlWithNamespace(string xmlFilePath)
+        public static void ParsePetsXmlWithNamespace()
         {
+            string xmlFilePath = "./Xpath/FuturesTrade.xml";
+            XmlDocument xdoc = new XmlDocument();
+            xdoc.Load(xmlFilePath);
 
+            var rootNode = xdoc.DocumentElement;
+
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(xdoc.NameTable);
+            nsmgr.AddNamespace("ns", "www.eurexchange.com/technology");
+            //or the next line method
+            //nsmgr.AddNamespace("ns", xdoc.DocumentElement.NamespaceURI);
+
+            var trdCapRptNode = rootNode.SelectSingleNode("./ns:TrdCaptRpt", nsmgr);
+            if (trdCapRptNode != null)
+            {
+                var bizDt = trdCapRptNode.Attributes["BizDt"].Value;
+                var ccy = trdCapRptNode.Attributes["Ccy"].Value;
+            }
         }
     }
 }

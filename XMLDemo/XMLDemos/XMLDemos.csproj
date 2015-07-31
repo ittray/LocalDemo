@@ -41,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlSerialize\Model2XML.cs" />
+    <Compile Include="XmlSerialize\WithOutAttributeDefine\ModelDefaultToXml.cs" />
+    <Compile Include="XmlSerialize\XMLHelper.cs" />
     <Compile Include="XPath\XmlNameSpaceTest.cs" />
     <Compile Include="XPath\XPathDemo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="XmlSerialize\" />
     <Folder Include="XSD-exe\" />
   </ItemGroup>
   <ItemGroup>
