@@ -41,6 +41,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XPath\XmlNameSpaceTest.cs" />
+    <Compile Include="XPath\XPathDemo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="XmlSerialize\" />
+    <Folder Include="XSD-exe\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="XPath\FuturesTrade.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XPath\Pets.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
