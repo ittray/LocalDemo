@@ -41,18 +41,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SchemaDemoAndXSD\XMLValidation.cs" />
     <Compile Include="XmlSerialize\Model2XML.cs" />
     <Compile Include="XmlSerialize\WithOutAttributeDefine\ModelDefaultToXml.cs" />
     <Compile Include="XmlSerialize\XMLHelper.cs" />
     <Compile Include="XPath\XmlNameSpaceTest.cs" />
     <Compile Include="XPath\XPathDemo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="XSD-exe\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="SchemaDemo\Students.xml" />
-    <Content Include="SchemaDemo\targetNamespace\StudentsNS.xml" />
+    <Content Include="SchemaDemoAndXSD\Readme.txt" />
+    <Content Include="SchemaDemoAndXSD\Students.xml" />
+    <Content Include="SchemaDemoAndXSD\targetNamespace\StudentsNS.xml" />
+    <Content Include="SchemaDemoAndXSD\XSD-Demo\persons.xml" />
     <Content Include="XPath\FuturesTrade.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -62,10 +63,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SchemaDemo\Students.xsd">
+    <None Include="SchemaDemoAndXSD\Students.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="SchemaDemo\targetNamespace\StudentsNS.xsd">
+    <None Include="SchemaDemoAndXSD\targetNamespace\StudentsNS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SchemaDemoAndXSD\XSD-Demo\persons.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
