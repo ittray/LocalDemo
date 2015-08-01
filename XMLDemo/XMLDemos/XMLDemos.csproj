@@ -51,6 +51,8 @@
     <Folder Include="XSD-exe\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SchemaDemo\Students.xml" />
+    <Content Include="SchemaDemo\targetNamespace\StudentsNS.xml" />
     <Content Include="XPath\FuturesTrade.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -58,6 +60,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SchemaDemo\Students.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SchemaDemo\targetNamespace\StudentsNS.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
