@@ -5,41 +5,49 @@
 // Email : idevhawk@gmail.com
 //----------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using CommandLine;
+using CommandLine.Text;
+
 namespace Push
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using System.Text;
-    using CommandLine;
-    using CommandLine.Text;
-
-    class Options : CommandLineOptionsBase
+    internal class Options : CommandLineOptionsBase
     {
-        [OptionList("b", "bindEndPoints", Required = false, Separator = ';', HelpText = "List of end points to bind seperated by ';'")]
-        public IList<string> bindEndPoints { get; set; }       
+        public Options()
+        {
+            Delay = 0;
+            MaxMessage = -1;
+        }
 
-        [OptionList("m", "AlterMessages", Required = true, Separator = ';', HelpText = "List of alternavive messages to send seperated by ';'. It may contains macros: #nb# = number of the msg")]
-        public IList<string> altMessages { get; set; }  
+        [OptionList("b", "bindEndPoints", Required = false, Separator = ';',
+            HelpText = "List of end points to bind seperated by ';'")]
+        public IList<string> BindEndPoints { get; set; }
+
+        [OptionList("m", "AlterMessages", Required = true, Separator = ';',
+            HelpText =
+                "List of alternavive messages to send seperated by ';'. It may contains macros: #nb# = number of the msg"
+            )]
+        public IList<string> AltMessages { get; set; }
 
         [Option("x", "MaxNbMessages", Required = false, HelpText = "Max nb message to send. Default -1 (unlimitted)")]
-        public long maxMessage { get; set; }  
+        public long MaxMessage { get; set; }
 
         [Option("d", "delay", Required = false, HelpText = "Delay between messages (ms). Default = 0")]
-        public int delay { get; set; }            
+        public int Delay { get; set; }
 
         [HelpOption(HelpText = "Dispaly this help screen.")]
         public string GetUsage()
         {
             var help = new HelpText
             {
-                Heading = "Push",               
+                Heading = "Push",
                 AdditionalNewLineAfterOption = true,
                 AddDashesToOption = true
             };
-            this.HandleParsingErrorsInHelp(help);
-            help.AddPreOptionsLine("Usage: Push.exe -b <bind endpoint list> -m <msgs to send> [-x <max nb msg>] [-d <time delay>]");          
+            HandleParsingErrorsInHelp(help);
+            help.AddPreOptionsLine(
+                "Usage: Push.exe -b <bind endpoint list> -m <msgs to send> [-x <max nb msg>] [-d <time delay>]");
             help.AddOptions(this);
 
             return help;
@@ -47,7 +55,7 @@ namespace Push
 
         private void HandleParsingErrorsInHelp(HelpText help)
         {
-            if (this.LastPostParsingState.Errors.Count > 0)
+            if (LastPostParsingState.Errors.Count > 0)
             {
                 var errors = help.RenderParsingErrorsText(this, 2); // indent with two spaces
                 if (!string.IsNullOrEmpty(errors))
@@ -56,12 +64,6 @@ namespace Push
                     help.AddPreOptionsLine(errors);
                 }
             }
-        }
-     
-        public Options()
-        {
-            delay = 0;
-            maxMessage = -1;
         }
     }
 }

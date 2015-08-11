@@ -5,48 +5,53 @@
 // Email : idevhawk@gmail.com
 //----------------------------------------------------------------------------------
 
+using System;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using CommandLine;
+using ZeroMQ;
+
 namespace Pub
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using CommandLine;
-    using ZeroMQ;
-
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
-            {                
+            {
                 var options = new Options();
                 var parser = new CommandLineParser(new CommandLineParserSettings(Console.Error));
+
                 if (!parser.ParseArguments(args, options))
                     Environment.Exit(1);
-                         
+
                 using (var ctx = ZmqContext.Create())
                 {
                     using (var socket = ctx.CreateSocket(SocketType.PUB))
-                    {                   
-                        foreach (var endPoint in options.bindEndPoints)
+                    {
+                        foreach (var endPoint in options.BindEndPoints)
                             socket.Bind(endPoint);
-                    
+
                         long msgCptr = 0;
-                        int msgIndex = 0;
+                        var msgIndex = 0;
+
                         while (true)
                         {
                             if (msgCptr == long.MaxValue)
                                 msgCptr = 0;
+
                             msgCptr++;
-                            if (options.maxMessage >= 0)
-                                if (msgCptr > options.maxMessage)
-                                    break;                        
-                            if (msgIndex == options.altMessages.Count())
+                            if (options.MaxMessage >= 0)
+                                if (msgCptr > options.MaxMessage)
+                                    break;
+
+                            if (msgIndex == options.AltMessages.Count())
                                 msgIndex = 0;
-                            var msg = options.altMessages[msgIndex++].Replace("#nb#", msgCptr.ToString("d2"));                        
-                            Thread.Sleep(options.delay);
+
+                            var msg = options.AltMessages[msgIndex++].Replace("#nb#", msgCptr.ToString("d2"));
+                            Thread.Sleep(options.Delay);
+
                             Console.WriteLine("Publishing: " + msg);
                             socket.Send(msg, Encoding.UTF8);
                         }

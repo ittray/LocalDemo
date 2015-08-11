@@ -5,19 +5,17 @@
 // Email : idevhawk@gmail.com
 //----------------------------------------------------------------------------------
 
+using System;
+using System.Text;
+using System.Threading;
+using CommandLine;
+using ZeroMQ;
+
 namespace PullPushWorker
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using CommandLine;
-    using ZeroMQ;
-
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
             {
@@ -26,20 +24,22 @@ namespace PullPushWorker
                 if (!parser.ParseArguments(args, options))
                     Environment.Exit(1);
 
-                using(var ctx = ZmqContext.Create())
+                using (var ctx = ZmqContext.Create())
                 {
                     using (ZmqSocket receiver = ctx.CreateSocket(SocketType.PULL),
-                                        sender = ctx.CreateSocket(SocketType.PUSH))
+                                     sender = ctx.CreateSocket(SocketType.PUSH))
                     {
-                        receiver.Connect(options.pullEndPoint);
-                        sender.Connect(options.pushEndPoint);
+                        receiver.Connect(options.PullEndPoint);
+                        sender.Connect(options.PushEndPoint);
 
                         while (true)
                         {
                             var rcvdMsg = receiver.Receive(Encoding.UTF8);
                             Console.WriteLine("Pulled : " + rcvdMsg);
-                            var sndMsg = options.rcvdMessageTag.Replace("#msg#", rcvdMsg);
-                            Thread.Sleep(options.delay);
+
+                            var sndMsg = options.RcvdMessageTag.Replace("#msg#", rcvdMsg);
+                            Thread.Sleep(options.Delay);
+
                             Console.WriteLine("Pushing: " + sndMsg);
                             sender.Send(sndMsg, Encoding.UTF8);
                         }

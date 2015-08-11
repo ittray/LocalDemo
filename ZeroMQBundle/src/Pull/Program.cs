@@ -5,37 +5,35 @@
 // Email : idevhawk@gmail.com
 //----------------------------------------------------------------------------------
 
+using System;
+using System.Text;
+using System.Threading;
+using CommandLine;
+using ZeroMQ;
+
 namespace Pull
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using CommandLine;
-    using ZeroMQ;
-
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-             try
-            {                
+            try
+            {
                 var options = new Options();
                 var parser = new CommandLineParser(new CommandLineParserSettings(Console.Error));
                 if (!parser.ParseArguments(args, options))
                     Environment.Exit(1);
-                         
-                using(var ctx = ZmqContext.Create())
+
+                using (var ctx = ZmqContext.Create())
                 {
                     using (var socket = ctx.CreateSocket(SocketType.PULL))
                     {
-                        foreach (var endPoint in options.bindEndPoints)
+                        foreach (var endPoint in options.BindEndPoints)
                             socket.Bind(endPoint);
 
                         while (true)
                         {
-                            Thread.Sleep(options.delay);
+                            Thread.Sleep(options.Delay);
                             var msg = socket.Receive(Encoding.UTF8);
                             Console.WriteLine("Received: " + msg);
                         }
@@ -46,6 +44,6 @@ namespace Pull
             {
                 Console.WriteLine(exp.Message);
             }
-        }        
+        }
     }
 }

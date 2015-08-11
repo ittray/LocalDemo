@@ -5,38 +5,43 @@
 // Email : idevhawk@gmail.com
 //----------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using CommandLine;
+using CommandLine.Text;
+
 namespace Sub
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using System.Text;
-    using CommandLine;
-    using CommandLine.Text;
-
-    class Options : CommandLineOptionsBase
+    internal class Options : CommandLineOptionsBase
     {
-        [OptionList("c", "connectEndPoints", Required = true, Separator = ';',  HelpText = "List of end points to connect seperated by ';'")]
-        public IList<string> connectEndPoints { get; set; }
+        public Options()
+        {
+            SubscriptionPrefixes = new List<string>();
+        }
 
-        [OptionList("s", "subscriptionPrefixes", Required = false, Separator = ';', HelpText = "List of prefix filters seperated by ';'. Filtering the arrived messages. Default is empty")]
-        public IList<string> subscriptionPrefixes { get; set; }
+        [OptionList("c", "connectEndPoints", Required = true, Separator = ';',
+            HelpText = "List of end points to connect seperated by ';'")]
+        public IList<string> ConnectEndPoints { get; set; }
+
+        [OptionList("s", "subscriptionPrefixes", Required = false, Separator = ';',
+            HelpText = "List of prefix filters seperated by ';'. Filtering the arrived messages. Default is empty")]
+        public IList<string> SubscriptionPrefixes { get; set; }
 
         [Option("d", "delay", Required = false, HelpText = "Delay between messages (ms). Default = 0")]
-        public int delay { get; set; }           
+        public int Delay { get; set; }
 
         [HelpOption(HelpText = "Dispaly this help screen.")]
         public string GetUsage()
         {
             var help = new HelpText
             {
-                Heading = "Subscriber",               
+                Heading = "Subscriber",
                 AdditionalNewLineAfterOption = true,
                 AddDashesToOption = true
             };
-            this.HandleParsingErrorsInHelp(help);
-            help.AddPreOptionsLine("Usage: Sub.exe -c <connect endpoint list> [-s <subscrp. prefixes>] [-d <time delay>]");         
+            HandleParsingErrorsInHelp(help);
+            help.AddPreOptionsLine(
+                "Usage: Sub.exe -c <connect endpoint list> [-s <subscrp. prefixes>] [-d <time delay>]");
             help.AddOptions(this);
 
             return help;
@@ -44,7 +49,7 @@ namespace Sub
 
         private void HandleParsingErrorsInHelp(HelpText help)
         {
-            if (this.LastPostParsingState.Errors.Count > 0)
+            if (LastPostParsingState.Errors.Count > 0)
             {
                 var errors = help.RenderParsingErrorsText(this, 2); // indent with two spaces
                 if (!string.IsNullOrEmpty(errors))
@@ -53,11 +58,6 @@ namespace Sub
                     help.AddPreOptionsLine(errors);
                 }
             }
-        }
-     
-        public Options()
-        {
-            subscriptionPrefixes = new List<string>();
         }
     }
 }

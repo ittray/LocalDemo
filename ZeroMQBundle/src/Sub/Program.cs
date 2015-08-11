@@ -5,19 +5,18 @@
 // Email : idevhawk@gmail.com
 //----------------------------------------------------------------------------------
 
+using System;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using CommandLine;
+using ZeroMQ;
+
 namespace Sub
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using CommandLine;
-    using ZeroMQ;
-
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
             {
@@ -26,22 +25,27 @@ namespace Sub
                 if (!parser.ParseArguments(args, options))
                     Environment.Exit(1);
 
-                using(var ctx = ZmqContext.Create())
+                using (var ctx = ZmqContext.Create())
                 {
                     using (var socket = ctx.CreateSocket(SocketType.SUB))
                     {
-                        if (options.subscriptionPrefixes.Count() == 0)
+                        if (options.SubscriptionPrefixes.Count() == 0)
+                        {
                             socket.SubscribeAll();
+                        }
                         else
-                            foreach (var subscriptionPrefix in options.subscriptionPrefixes)
-                                socket.Subscribe(Encoding.UTF8.GetBytes(subscriptionPrefix));//match the message if it beginwith the prifex.
+                        {
+                            foreach (var subscriptionPrefix in options.SubscriptionPrefixes)
+                                socket.Subscribe(Encoding.UTF8.GetBytes(subscriptionPrefix));
+                        }
+                        //match the message if it beginwith the prifex.
 
-                        foreach (var endPoint in options.connectEndPoints)
+                        foreach (var endPoint in options.ConnectEndPoints)
                             socket.Connect(endPoint);
 
                         while (true)
                         {
-                            Thread.Sleep(options.delay);
+                            Thread.Sleep(options.Delay);
                             var msg = socket.Receive(Encoding.UTF8);
                             Console.WriteLine("Received: " + msg);
                         }
