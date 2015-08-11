@@ -5,38 +5,37 @@
 // Email : idevhawk@gmail.com
 //----------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using CommandLine;
+using CommandLine.Text;
+
 namespace Rep
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using System.Text;
-    using CommandLine;
-    using CommandLine.Text;
-
-    class Options : CommandLineOptionsBase
+    internal class Options : CommandLineOptionsBase
     {
-        [OptionList("b", "bindEndPoints", Required = true, Separator = ';', HelpText = "List of end points to bind seperated by ';'")]
-        public IList<string> bindEndPoints { get; set; }
+        [OptionList("b", "bindEndPoints", Required = true, Separator = ';',
+            HelpText = "List of end points to bind seperated by ';'")]
+        public IList<string> BindEndPoints { get; set; }
 
-        [Option("r", "replyMessage", Required = true, HelpText = "Message to send as reply that may contains replaceable macros: #msg# = received msg")]
-        public string replyMessage { get; set; }
+        [Option("r", "replyMessage", Required = true,
+            HelpText = "Message to send as reply that may contains replaceable macros: #msg# = received msg")]
+        public string ReplyMessage { get; set; }
 
         [Option("d", "delay", Required = false, HelpText = "Delay between messages (ms). Default = 0")]
-        public int delay { get; set; }
-     
+        public int Delay { get; set; }
+
         [HelpOption(HelpText = "Dispaly this help screen.")]
         public string GetUsage()
         {
             var help = new HelpText
             {
-                Heading = "Rep Server",                
+                Heading = "Rep Server",
                 AdditionalNewLineAfterOption = true,
                 AddDashesToOption = true
             };
-            this.HandleParsingErrorsInHelp(help);          
-            help.AddPreOptionsLine("Usage: Rep.exe -b <bind endpoint list> -r <reply msg pattern> [-d <time delay>]");           
+            HandleParsingErrorsInHelp(help);
+            help.AddPreOptionsLine("Usage: Rep.exe -b <bind endpoint list> -r <reply msg pattern> [-d <time delay>]");
             help.AddOptions(this);
 
             return help;
@@ -44,7 +43,7 @@ namespace Rep
 
         private void HandleParsingErrorsInHelp(HelpText help)
         {
-            if (this.LastPostParsingState.Errors.Count > 0)
+            if (LastPostParsingState.Errors.Count > 0)
             {
                 var errors = help.RenderParsingErrorsText(this, 2); // indent with two spaces
                 if (!string.IsNullOrEmpty(errors))
@@ -53,10 +52,6 @@ namespace Rep
                     help.AddPreOptionsLine(errors);
                 }
             }
-        }
-     
-        public Options()
-        {            
         }
     }
 }

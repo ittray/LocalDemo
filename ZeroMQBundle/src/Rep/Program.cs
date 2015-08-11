@@ -5,22 +5,21 @@
 // Email : idevhawk@gmail.com
 //----------------------------------------------------------------------------------
 
+using System;
+using System.Text;
+using System.Threading;
+using CommandLine;
+using ZeroMQ;
+
 namespace Rep
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using CommandLine;
-    using ZeroMQ;
-
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var options = new Options();
             var parser = new CommandLineParser(new CommandLineParserSettings(Console.Error));
+
             if (!parser.ParseArguments(args, options))
                 Environment.Exit(1);
 
@@ -28,21 +27,21 @@ namespace Rep
             {
                 using (var socket = context.CreateSocket(SocketType.REP))
                 {
-                    foreach (var bindEndPoint in options.bindEndPoints)
+                    foreach (var bindEndPoint in options.BindEndPoints)
                         socket.Bind(bindEndPoint);
 
                     while (true)
                     {
-                        Thread.Sleep(options.delay);
+                        Thread.Sleep(options.Delay);
                         var rcvdMsg = socket.Receive(Encoding.UTF8);
                         Console.WriteLine("Received: " + rcvdMsg);
 
-                        var replyMsg = options.replyMessage.Replace("#msg#", rcvdMsg);
-                        Console.WriteLine("Sending : " + replyMsg + Environment.NewLine);                        
+                        var replyMsg = options.ReplyMessage.Replace("#msg#", rcvdMsg);
+                        Console.WriteLine("Sending : " + replyMsg + Environment.NewLine);
                         socket.Send(replyMsg, Encoding.UTF8);
                     }
                 }
             }
-        }     
+        }
     }
 }

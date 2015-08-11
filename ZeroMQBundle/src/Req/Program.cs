@@ -5,22 +5,22 @@
 // Email : idevhawk@gmail.com
 //----------------------------------------------------------------------------------
 
+using System;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using CommandLine;
+using ZeroMQ;
+
 namespace Req
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using CommandLine;
-    using ZeroMQ;
-
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var options = new Options();
             var parser = new CommandLineParser(new CommandLineParserSettings(Console.Error));
+
             if (!parser.ParseArguments(args, options))
                 Environment.Exit(1);
 
@@ -28,11 +28,11 @@ namespace Req
             {
                 using (var socket = context.CreateSocket(SocketType.REQ))
                 {
-                    foreach (var connectEndpoint in options.connectEndPoints)
+                    foreach (var connectEndpoint in options.ConnectEndPoints)
                         socket.Connect(connectEndpoint);
 
                     long msgCptr = 0;
-                    int msgIndex = 0;
+                    var msgIndex = 0;
 
                     while (true)
                     {
@@ -40,15 +40,15 @@ namespace Req
                             msgCptr = 0;
 
                         msgCptr++;
-                        if (options.maxMessage >= 0)
-                            if (msgCptr > options.maxMessage)
+                        if (options.MaxMessage >= 0)
+                            if (msgCptr > options.MaxMessage)
                                 break;
 
-                        if (msgIndex == options.alterMessages.Count())
+                        if (msgIndex == options.AlterMessages.Count())
                             msgIndex = 0;
 
-                        var reqMsg = options.alterMessages[msgIndex++].Replace("#nb#", msgCptr.ToString("d2"));
-                        Thread.Sleep(options.delay);
+                        var reqMsg = options.AlterMessages[msgIndex++].Replace("#nb#", msgCptr.ToString("d2"));
+                        Thread.Sleep(options.Delay);
                         Console.WriteLine("Sending : " + reqMsg);
 
                         socket.Send(reqMsg, Encoding.UTF8);
