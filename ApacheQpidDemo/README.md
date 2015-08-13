@@ -27,24 +27,24 @@ To to get the Qpid .net client. Actually, the .net client of Qpid(Org.Apache.Qpi
 write in C#, it's writed by managed C++ that can be directly reference and called by C#.
 The simple build guid: https://issues.apache.org/jira/browse/QPID-6266
 
-Qpid0.30 (https://svn.apache.org/repos/asf/qpid/tags/0.30/qpid)+ 
-Qpid Proton 0.8 (https://svn.apache.org/repos/asf/qpid/proton/tags/0.8)+ 
-CMake 3.2.3 + 
-VS2010 + 
-Ruby2.2.2 + 
-boost-win-1.47-32bit-vs2010 (http://people.apache.org/~chug/boost-win-1.47/)+ 
-Phython2.5.2
+* Qpid0.30 (https://svn.apache.org/repos/asf/qpid/tags/0.30/qpid)+ 
+* Qpid Proton 0.8 (https://svn.apache.org/repos/asf/qpid/proton/tags/0.8)+ 
+* CMake 3.2.3 + 
+* VS2010 + 
+* Ruby2.2.2 + 
+* boost-win-1.47-32bit-vs2010 (http://people.apache.org/~chug/boost-win-1.47/)+ 
+* Phython2.5.2
 can be build successfuly
 
 
 To build Qpid 0.35
-Qpid (https://svn.apache.org/repos/asf/qpid/trunk/qpid) 2015-07-22 the version is about 0.35 + 
-Qpid Proton (https://svn.apache.org/repos/asf/qpid/proton/trunk) 2015-07-22 the version is about 0.8+ + 
-CMake 2.8.12.2 + 
-VS2010 + 
-Ruby2.2.2 + 
-boost-win-1.47-32bit-vs2010 (http://people.apache.org/~chug/boost-win-1.47/)+ 
-Phython2.5.2
+* Qpid (https://svn.apache.org/repos/asf/qpid/trunk/qpid) 2015-07-22 the version is about 0.35 + 
+* Qpid Proton (https://svn.apache.org/repos/asf/qpid/proton/trunk) 2015-07-22 the version is about 0.8+ + 
+* CMake 2.8.12.2 + 
+* VS2010 + 
+* Ruby2.2.2 + 
+* boost-win-1.47-32bit-vs2010 (http://people.apache.org/~chug/boost-win-1.47/)+ 
+* Phython2.5.2
 can be build successfuly
 
 
@@ -52,7 +52,7 @@ can be build successfuly
 AMQP SSL connection
 I fixed the SSL connection issue between demo application to Simple AMQP broker by debugging the source code of QPID.
 Summary:
-*The Qpid C++ client(include .net) must use the system environment variable to specify out the certificate Name, and path. 
+* The Qpid C++ client(include .net) must use the system environment variable to specify out the certificate Name, and path. 
 It must set before you start your app. you can't set it in your code, it does not take effect. 
 there are two types of environment variable you can use.
 * The client private certificate was saved in the System's store.
@@ -78,13 +78,13 @@ set QPID_SSL_CERT_PASSWORD_FILE=.\ABCFR_ABCFRALMMACC1.pwd
 set QPID_SSL_CERT_NAME=abcfr_abcfralmmacc1
 ```
 
-*There are Two issues in Eurex's document and demo code of make SSL connection. one is certificate, 
+* There are Two issues in Eurex's document and demo code of make SSL connection. one is certificate, 
 already comment out in last section. Another is in making SSL connection, the "username" must be specified. and it's sensitive.
 ```
 // the username is case sensitive
 connection.SetOption("username", "ABCFR_ABCFRALMMACC1");
 ```
-*In broker Address, must use the host name, not the IP. if you use IP, 
+* In broker Address, must use the host name, not the IP. if you use IP, 
 you will get the error"notice SSL negotiation failed to 192.168.34.11:11234: The target principal name is incorrect."
 The host-name is not signed in certificate, I don't known why.
 The correct one:
