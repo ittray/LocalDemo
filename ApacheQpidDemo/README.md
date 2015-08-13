@@ -22,6 +22,7 @@ There are many AMQP client, like RabbitMQ which is base on  AMQP 0-9-1. the Amqp
 Red Hat MRG Messaging（base on qpid） provides the pre build client on multiple languages,include C#, 
 But it needs to pay.No evaluation.
 https://access.redhat.com/downloads/
+《Red_Hat_Enterprise_MRG-3-Messaging_Programming_Reference-en-US》
 
 #Build Apache Qpid on windows
 To to get the Qpid .net client. Actually, the .net client of Qpid(Org.Apache.Qpid.Messaging.dll) is not
