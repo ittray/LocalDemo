@@ -12,7 +12,7 @@ namespace zookeeperDemo
         static void Main(string[] args)
         {
             DemoWatcher watcher = new DemoWatcher();
-            ZooKeeper zk = new ZooKeeper("192.168.6.129:2182", new TimeSpan(16000), watcher);
+            ZooKeeper zk = new ZooKeeper("127.0.0.1:2181", new TimeSpan(16000), watcher);
             //zk.Create("/master", BitConverter.GetBytes(230), ACL, CreateMode.Ephemeral);
             checkMaster(zk);
 
@@ -32,7 +32,11 @@ namespace zookeeperDemo
                 }
                 catch (KeeperException.NoNodeException)
                 {
-                    
+
+                    return false;
+                }
+                catch (Exception ex)
+                {
                     return false;
                 }
             }
@@ -44,7 +48,6 @@ namespace zookeeperDemo
         public void Process(WatchedEvent @event)
         {
             Console.WriteLine(@event);
-
         }
     }
 }
