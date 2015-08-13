@@ -4,11 +4,11 @@ Messaging built on AMQP (https://qpid.apache.org/)
 Apache Qpid™ makes messaging tools that speak AMQP and support many languages and platforms.
 
 AMQP versions:
-0-8 2006-06
-0-9 2006-12
-0-9-1 2008-11
-0-10 2009
-1.0 draft
+_0-8 2006-06
+_0-9 2006-12
+_0-9-1 2008-11
+_0-10 2009
+_1.0 draft
 From http://www.amqp.org/resources/download
 Since its inception, the AMQP Working Group has stated that backwards compatibility for protocol 
 versions created before 1.0 series could not be assumed. 
