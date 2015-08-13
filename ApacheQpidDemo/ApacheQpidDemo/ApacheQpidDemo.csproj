@@ -14,7 +14,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="org.apache.qpid.messaging">
+      <HintPath>..\ApacheQpidClient\QpidClient0.35_X86\org.apache.qpid.messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="org.apache.qpid.messaging.sessionreceiver">
+      <HintPath>..\ApacheQpidClient\QpidClient0.35_X86\org.apache.qpid.messaging.sessionreceiver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,7 +53,48 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\ApacheQpidClient\certificates\ABCFR_ABCFRALMMACC1.p12">
+      <Link>ABCFR_ABCFRALMMACC1.p12</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\ApacheQpidClient\certificates\ABCFR_ABCFRALMMACC1.pwd">
+      <Link>ABCFR_ABCFRALMMACC1.pwd</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\README.md">
+      <Link>README.md</Link>
+    </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\ApacheQpidClient\QpidClient0.35_X86\boost_date_time-vc100-mt-gd-1_47.dll">
+      <Link>boost_date_time-vc100-mt-gd-1_47.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ApacheQpidClient\QpidClient0.35_X86\boost_program_options-vc100-mt-gd-1_47.dll">
+      <Link>boost_program_options-vc100-mt-gd-1_47.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ApacheQpidClient\QpidClient0.35_X86\boost_thread-vc100-mt-gd-1_47.dll">
+      <Link>boost_thread-vc100-mt-gd-1_47.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ApacheQpidClient\QpidClient0.35_X86\qpidclientd.dll">
+      <Link>qpidclientd.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ApacheQpidClient\QpidClient0.35_X86\qpidcommond.dll">
+      <Link>qpidcommond.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ApacheQpidClient\QpidClient0.35_X86\qpidmessagingd.dll">
+      <Link>qpidmessagingd.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ApacheQpidClient\QpidClient0.35_X86\qpidtypesd.dll">
+      <Link>qpidtypesd.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
