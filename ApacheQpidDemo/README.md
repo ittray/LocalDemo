@@ -9,6 +9,7 @@ AMQP versions:
 * 0-9-1 2008-11
 * 0-10 2009
 * 1.0 draft
+
 From http://www.amqp.org/resources/download
 Since its inception, the AMQP Working Group has stated that backwards compatibility for protocol 
 versions created before 1.0 series could not be assumed. 
@@ -34,6 +35,7 @@ The simple build guid: https://issues.apache.org/jira/browse/QPID-6266
 * Ruby2.2.2 + 
 * boost-win-1.47-32bit-vs2010 (http://people.apache.org/~chug/boost-win-1.47/)+ 
 * Phython2.5.2
+
 can be build successfuly
 
 
@@ -45,6 +47,7 @@ To build Qpid 0.35
 * Ruby2.2.2 + 
 * boost-win-1.47-32bit-vs2010 (http://people.apache.org/~chug/boost-win-1.47/)+ 
 * Phython2.5.2
+
 can be build successfuly
 
 
