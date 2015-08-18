@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CertificateTest.cs" />
+    <Compile Include="EurexProduct.cs" />
+    <Compile Include="EurexSimple.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TradeConfirmationDM.cs" />
@@ -63,6 +66,14 @@
     </None>
     <None Include="..\ApacheQpidClient\certificates\ABCFR_ABCFRALMMACC1.pwd">
       <Link>ABCFR_ABCFRALMMACC1.pwd</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\ApacheQpidClient\certificates\LiquidCapital\LCMLO_LIQSPALBB.p12">
+      <Link>LCMLO_LIQSPALBB.p12</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\ApacheQpidClient\certificates\LiquidCapital\LCMLO_LIQSPALBB.pwd">
+      <Link>LCMLO_LIQSPALBB.pwd</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="App.config">
