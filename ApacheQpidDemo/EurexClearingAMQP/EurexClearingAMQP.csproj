@@ -68,16 +68,14 @@
       <Link>ABCFR_ABCFRALMMACC1.pwd</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\ApacheQpidClient\certificates\LiquidCapital\LCMLO_LIQSPALBB.p12">
-      <Link>LCMLO_LIQSPALBB.p12</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\ApacheQpidClient\certificates\LiquidCapital\LCMLO_LIQSPALBB.pwd">
-      <Link>LCMLO_LIQSPALBB.pwd</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="LCMLO_LIQSPALBBLCM1.p12">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="LCMLO_LIQSPALBBLCM1.pwd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

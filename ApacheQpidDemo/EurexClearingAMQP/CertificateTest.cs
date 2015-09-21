@@ -17,7 +17,8 @@ namespace EurexClearingAMQP
 
         public void SubTest()
         {
-            X509Certificate2 x509 = new X509Certificate2(@"..\..\..\ApacheQpidClient\certificates\LiquidCapital\LCMLO_ABCFRALMMACC1.crt");
+            X509Certificate2 x509 = new X509Certificate2(@"C:\Users\bxu.CHINA\Desktop\HYD-801\1234\cert\ABCFR_ABCFRALMMACC1.crt");
+            //X509Certificate2 x509 = new X509Certificate2(@"..\..\..\ApacheQpidClient\certificates\LiquidCapital\LCMLO_ABCFRALMMACC1.crt");
 
             byte[] rawdata = x509.RawData;
             Console.WriteLine("Content Type: {0}{1}", X509Certificate2.GetCertContentType(rawdata), Environment.NewLine);

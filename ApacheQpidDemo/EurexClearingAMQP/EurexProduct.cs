@@ -21,8 +21,8 @@ namespace EurexClearingAMQP
         //private string _brokerAddress = "amqp:ssl:ecag-fixml-simu1.deutsche-boerse.com:10170";
         //private string _failBrokerAddress = "amqp:ssl:ecag-fixml-simu1.deutsche-boerse.com:10170";
 
-        private string _memberName = "LCMLO_LIQSPALBB";
-        private string _broadcastAddress = "broadcast.LCMLO_LIQSPALBB.TradeConfirmationNCM; { node: { type: queue}, create: never, mode: consume, assert: always}";
+        private string _memberName = "LCMLO_LIQSPALBBLCM1";
+        private string _broadcastAddress = "broadcast.LCMLO_LIQSPALBBLCM1.TradeConfirmationNCM; { node: { type: queue}, create: never, mode: consume, assert: always}";
 
         public void ConnectAndReceive()
         {
