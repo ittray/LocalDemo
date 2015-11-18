@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Contracts
 {
-    [ServiceContract(Namespace = "http://www.artech.com/", CallbackContract = typeof(ICallback))]
-    public interface ICalculator
+    public interface ICallback
     {
         [OperationContract(IsOneWay = true)]
-        void Add(double x, double y);
+        void DisplayResult(double x, double y, double result);
     }
 }
