@@ -10,7 +10,6 @@ using System.Timers;
 
 namespace Shadowsocks.Controller
 {
-
     class TCPRelay : Listener.Service
     {
         private ShadowsocksController _controller;
@@ -68,7 +67,7 @@ namespace Shadowsocks.Controller
                 Logging.Debug("Closing timed out connection");
                 handler1.Close();
             }
-        return true;
+            return true;
         }
     }
 
@@ -367,7 +366,7 @@ namespace Shadowsocks.Controller
         {
             public Server Server;
 
-            public ServerTimer(int p) :base(p)
+            public ServerTimer(int p) : base(p)
             {
             }
         }
