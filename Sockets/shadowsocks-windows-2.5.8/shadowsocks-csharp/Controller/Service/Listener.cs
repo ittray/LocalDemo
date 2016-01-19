@@ -79,9 +79,8 @@ namespace Shadowsocks.Controller
 
                 // Start an asynchronous socket to listen for connections.
                 Console.WriteLine("Shadowsocks started");
-                _tcpSocket.BeginAccept(
-                    new AsyncCallback(AcceptCallback),
-                    _tcpSocket);
+                _tcpSocket.BeginAccept(new AsyncCallback(AcceptCallback), _tcpSocket);
+
                 UDPState udpState = new UDPState();
                 _udpSocket.BeginReceiveFrom(udpState.buffer, 0, udpState.buffer.Length, 0, ref udpState.remoteEndPoint, new AsyncCallback(RecvFromCallback), udpState);
             }
